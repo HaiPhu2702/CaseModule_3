@@ -1,0 +1,362 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+}
+
+
+
+
+
+#header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header .logo {
+    margin-left: 95px;
+}
+
+.menu .item {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+
+.menu .item li {
+    margin: 0 25px;
+    color: #626A67;
+}
+
+.menu .item li a {
+    margin: 0 65px;
+    color: #626A67;
+}
+
+.menu .item li i{
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+#banner {
+    width: 100%;
+    background-image: linear-gradient(0deg, rgba(112, 83, 83, 0.5), rgba(80, 35, 35, 0.5)), url('../img/backgrounf.jpg');
+    margin-top: 40px;
+    display: flex;
+    height: 700px;
+    padding: 0 133px;
+    position: relative;
+}
+
+#banner .box-left {
+    width: 50%;
+}
+
+#banner .box-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#banner .box-left h2 {
+    font-size: 48px;
+    margin-top: 75px;
+    color: #fff;
+}
+
+#banner .box-left p {
+    color: #eae1e1;
+    margin-top: 20px;
+
+
+}
+
+#banner .box-left button {
+    width: 191px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 20px;
+    background: rgb(190, 81, 81);
+    color: #D0D0D0;
+    transition: 0.8s;
+    margin-top: 90px;
+    cursor: pointer;
+}
+
+#banner .box-left button:hover {
+    background: coral;
+    color: white;
+}
+
+#banner .box-right img {
+    width: 13%;
+    height: 80%;
+    border-radius: 20px;
+    margin: 0 10px;
+    animation: animation 1.5s infinite linear;
+    cursor: pointer;
+}
+
+#banner .box-right img:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+#banner .box-right img:nth-child(2) {
+    height: 87%;
+    animation-delay: 1s;
+}
+
+@keyframes animation {
+    0% {
+        transform: translateY(0);
+
+    }
+    50% {
+        transform: translateY(-10px);
+
+    }
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+.bottom .icon-banner-bottom img {
+    width: 40px;
+    height: 28px;
+    border-radius: 8px;
+
+}
+
+.bottom {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+}
+
+
+
+
+
+
+#products {
+    padding: 110px 134px 5px;
+
+}
+
+#products h2 {
+    text-align: center;
+    margin-bottom: 85px;
+    font-size: 40px;
+    color: #808685;
+}
+
+#list-product .item img {
+    width: 350px;
+    height: 370px;
+    border-radius: 20px;
+
+    margin: 0 0 30px 0;
+}
+
+#list-product .item {
+    margin-bottom: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #3e413e;
+    border-radius: 20px;
+
+}
+
+#list-product .item .start {
+    height: 22px;
+    text-align: center;
+}
+
+#list-product .item .description {
+    text-align: center;
+}
+
+#list-product .item .description h4 {
+    font-size: 30px;
+    color: #fff;
+}
+
+#list-product .item .description p {
+    font-size: 18px;
+    color: #abb9b2;
+}
+
+#list-product .item .description p:nth-child(3) {
+    color: #be1919;
+    font-weight: bold;
+    cursor: pointer;
+    list-style: unset;
+}
+
+#list-product {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+
+
+
+#list-pages {
+    display: flex;
+    justify-content: center;
+}
+
+#list-pages .item {
+    height: 50px;
+    width: 50px;
+    margin: 0 25px;
+    background: #3e413e;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#list-pages .item a {
+    color: #fff;
+    font-weight: bold;
+}
+
+
+
+
+
+
+#sale-off {
+    width: 100%;
+    display: flex;
+    height: 352px;
+    margin-top: 65px;
+}
+
+#sale-off .box-left, #sale-off .box-right {
+    width: 50%;
+    cursor: pointer
+
+}
+
+#sale-off .box-left {
+    background: #654122;
+    text-align: center;
+    min-height: 352px;
+
+}
+
+#sale-off .box-left h1 {
+    padding-top: 48px;
+}
+
+#sale-off .box-left span:nth-child(1) {
+    color: #fff;
+    font-size: 50px;
+}
+
+#sale-off .box-left span:nth-child(2) {
+    color: orange;
+    font-size: 128px;
+}
+
+#sale-off .box-right {
+    background-image: url("../img/sale-off.jpg");
+}
+
+
+
+
+#comment{
+    width: 70%;
+    height: 478px;
+    margin: 0 auto;
+}
+#comment h2{
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+    color:#808685 ;
+}
+
+#comment-body .item .avatar img{
+    width: 70px;
+    border-radius: 50%;
+}
+
+#comment-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background: #af5e52;*/
+    border-radius: 30px;
+    width: 100%;
+    height: 300px;
+
+/*// nếu nhiều item trong khung tràn ra sẽ bị ẩn đi*/
+    overflow: hidden;
+
+}
+
+
+
+#comment-body .prev img, #comment-body .next   img{
+    width: 20px;
+    height: 40px;
+}
+
+#list-comment{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    list-style: none;
+    /*background: #362f2f;*/
+
+}
+
+#list-comment .item{
+    width: 100%;
+    height: 100%;
+    background: #362f2f;
+    padding-top: 50px;
+    border-radius: 50px;
+    margin-bottom:8px;
+
+}
+
+
+#list-comment .item .avatar{
+    margin-bottom: 8px;
+}
+
+#list-comment .item .name{
+    color: #ffffff;
+    margin-top: 15px;
+}
+
+#list-comment .item .text{
+    margin-bottom: 45px;
+    color: #ecdcb2;
+}
+
+
+
