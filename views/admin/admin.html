@@ -7,6 +7,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <style>
         .th, td {
@@ -73,8 +75,8 @@
 </div>
 
 
-
-<div class="container-xxl position-relative bg-white d-flex p-0" style="background-image: url('../../public/img/img1.jpg')">
+<div class="container-xxl position-relative bg-white d-flex p-0"
+     style="background-image: url('../../public/img/img1.jpg')">
     <!-- Spinner Start -->
     <div id="spinner"
          class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -149,10 +151,9 @@
             <div class="navbar-nav align-items-center ms-auto">
                 <div class="nav-item dropdown">
 
-                  <button type="button" class="btn btn-primary" id="btn-message">
-                      <i id='icon-message' class="fa-solid fa-envelope" style=""></i>
-                  </button>
-
+                    <button type="button" class="btn btn-primary" id="btn-message">
+                        <i id='icon-message' class="fa-solid fa-envelope" style=""></i>
+                    </button>
 
 
                     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
@@ -233,24 +234,15 @@
         <!-- Navbar End -->
 
 
-
-
-
-
-
-
-        <div id="div-AllMessages" >
+        <div id="div-AllMessages">
             <div id="div"></div>
-            <input id="input-send" type="text" class="form-control" aria-label="Text input with checkbox" style="display:none">
-            <button id="btn-sendMessage" type="button" class="btn btn-primary" style="display:none">send</button>
-            <button id="btn-offMessage" type="button" class="btn btn-primary" style="display:none">Turn off</button>
+            <input id="input-send" type="text" class="form-control" aria-label="Text input with checkbox"
+                   style="display:none">
+
+            <button type="button" class="btn btn-primary mt-3" id="btn-sendMessage" style="display:none">send</button>
+            <button type="button" class="btn btn-danger mt-3" id="btn-offMessage" style="display:none">Turn off</button>
 
         </div>
-
-
-
-
-
 
 
         <!-- Sale & Revenue Start -->
@@ -299,7 +291,8 @@
 
         <div class="container-fluid pt-4 px-4">
             <div>
-                <button type="button" class="btn btn-outline-primary" style="font-weight: bold;border:3px solid #009CFF">
+                <button type="button" class="btn btn-outline-primary"
+                        style="font-weight: bold;border:3px solid #009CFF">
                     <a href="products/create">ADD</a></button>
             </div>
             <div class="bg-light text-center rounded p-4">
@@ -369,43 +362,32 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     const socket = io('http://localhost:8080');
-    socket.on('userChat',message=>{
-            document.getElementById('icon-message').style.color='red';
-            document.getElementById('btn-message').addEventListener('click',()=>{
-                let divAll=document.getElementById('div');
-                const newDiv = document.createElement('div')
-                newDiv.innerText=`user:${message}`;
-                divAll.append(newDiv)
-                document.getElementById('input-send').style.display='block'
-                document.getElementById('btn-sendMessage').style.display='block'
-                document.getElementById('btn-offMessage').style.display='block'
-
-
-            })
-
+    socket.on('userChat', message => {
+        $("#icon-message").css("color","red")
+        $('#btn-message').click (() => {
+            $('#div').append(`<div>user:${message}</div>`)
+            $("#input-send").css("display", "block")
+            $("#btn-sendMessage").css("display", "block")
+            $("#btn-offMessage").css("display", "block")
+        })
     })
 
-
-
-
-    document.getElementById('btn-sendMessage').addEventListener('click',()=>{
-        let valueMessage = document.getElementById('input-send').value;
-        if(valueMessage!==''){
-            let divAll=document.getElementById('div');
-                const newDiv = document.createElement('div')
-                newDiv.innerText=`you:${valueMessage}`;
-                divAll.append(newDiv)
-            document.getElementById('input-send').value=''
-            socket.emit('adminAnswer',`admin:${valueMessage}`)
+    $('#btn-sendMessage').click(()=>{
+        let valueMessage = $('#input-send').val();
+        if (valueMessage !== '') {
+            $('#div').append(`<div>you:${valueMessage}</div>`)
+            $('#input-send').val('')
+            socket.emit('adminAnswer', `admin:${valueMessage}`)
         }
     })
 
-
-    document.getElementById('btn-offMessage').addEventListener('click',()=>{
-        document.getElementById('div-AllMessages').style.display='none';
-
-
+    $('#btn-offMessage').click(() => {
+        $("#div-AllMessages").removeAttr("style").hide()
+        $("#icon-message").css("color","")
     })
+
+
+
 </script>
 
 <script></script>

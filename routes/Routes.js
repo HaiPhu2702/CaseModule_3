@@ -20,11 +20,4 @@ module.exports={
     "user/order":productController.order
 
 
-
-
-
-
-
-
-
 }

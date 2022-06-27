@@ -30,18 +30,20 @@
                 <li><a href="">Sản Phẩm</a></li>
                 <li><a href="">Blog</a></li>
                 <li><a href="">Liên Hệ</a></li>
-                <button class="btn btn-primary "><i class="fa-solid fa-message"></i></button>
-                <li><i class="fa-solid fa-user"></i></li>
+                <button id="icon-message" class="btn btn-primary "><i class="fa-solid fa-message"></i></button>
+                <button class="btn btn-danger" id="logout"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a></button>
             </ul>
         </div>
 
 
     </div>
 
-    <div>
+    <div id="div-Allchat" style="display:none">
         <div id="div11"></div>
         <input id='chat' type="text" class="form-control" aria-label="Text input with checkbox">
-        <button type="button" class="btn btn-primary" id="send-chat">send</button>
+        <button type="button" class="btn btn-primary mt-3" id="send-chat">send</button>
+        <button type="button" class="btn btn-danger mt-3" id="off-chat">Turn off</button>
+
     </div>
 
 
@@ -504,6 +506,19 @@
     socket.on('adminAnswer1', adminAnswer => {
         $('#div11').append(`<div>${adminAnswer}</div>`)
     })
+
+    document.getElementById('icon-message').addEventListener('click',()=>{
+
+        document.getElementById('div-Allchat').style.display='block'
+    })
+
+ document.getElementById('off-chat').addEventListener('click',()=>{
+
+        document.getElementById('div-Allchat').style.display='none'
+    })
+
+
+
 
 
 

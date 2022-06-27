@@ -54,9 +54,11 @@ module.exports = class productController {
                         }
                     })
             }else {
+
                 productController.readFile('./views/login/login.html',req, res)
             }
-        }else {
+        }
+        else {
             // lay du lieu tu form tra ve gom 2 bang product+typeProduct
             let data = ''
             req.on('data', chunk => {
@@ -71,6 +73,7 @@ module.exports = class productController {
                     .then(result=>{
                         let users=Object.values(JSON.parse(JSON.stringify(result)))
                         if(users.length>0){
+                            console.log(users.length)
 
                             if(loginForm.remember==='on'){
                                 //tao session
@@ -121,6 +124,10 @@ module.exports = class productController {
             }
 
     }
+
+
+
+
     static signup(req, res) {
         if(req.method === 'GET'){
             productController.readFile('./views/login/signup.html',req,res)
@@ -172,56 +179,71 @@ module.exports = class productController {
 
     static logout(req, res) {
         let cookieClient=cookie.parse(req.headers.cookie||'')
-        let IDSessionCookie= (JSON.parse(cookieClient.cookie_user)).session_name;
-
-        fs.exists(`./Session/dataSession/${IDSessionCookie}.txt`,exists=>{
-            if (exists){
-                fs.unlink(`./Session/dataSession/${IDSessionCookie}.txt`,err =>{
-                    if(err){throw err}
+        if(!cookieClient.cookie_user){
+            res.writeHead(301,{location: '/login'})
+                    res.end()
+        }else {
+            let IDSessionCookie= (JSON.parse(cookieClient.cookie_user)).session_name;
+            fs.exists(`./Session/dataSession/${IDSessionCookie}.txt`,exists=>{
+                if (exists){
+                    fs.unlink(`./Session/dataSession/${IDSessionCookie}.txt`,err =>{
+                        if(err){throw err}
+                        res.writeHead(301,{location: '/login'})
+                        res.end()
+                    })
+                }{
                     res.writeHead(301,{location: '/login'})
                     res.end()
-                })
-            }{
-                res.writeHead(301,{location: '/login'})
-                res.end()
-            }
-        })
+                }
+            })
 
-
+        }
 
     }
 
     static showAdminPage(req, res) {
-        productModel.joinProductWithType().then(listProduct => {
-            fs.readFile('./views/admin/admin.html', "utf8", (err, data) => {
-                if (err) {
-                    throw err
-                }
-                let html = '';
-                listProduct.forEach((product, index) => {
-                    html += '<tr>'
-                    html += `<td >${index + 1}</td>`
-                    html += `<td >${product.name}</td>`
-                    html += `<td>${product.price}</td>`
-                    html += `<td>${product.type}</td>`
-                    html += `<td>
+        let cookieClient=cookie.parse(req.headers.cookie||'')
+        if(cookieClient.cookie_user){
+            productModel.joinProductWithType()
+                .then(listProduct => {
+                    fs.readFile('./views/admin/admin.html', "utf8", (err, data) => {
+                        if (err) {
+                            throw err
+                        }
+                        let html = '';
+                        listProduct.forEach((product, index) => {
+                            html += '<tr>'
+                            html += `<td >${index + 1}</td>`
+                            html += `<td >${product.name}</td>`
+                            html += `<td>${product.price}</td>`
+                            html += `<td>${product.type}</td>`
+                            html += `<td>
                              <button type="button" value="${product.id}" class="btn btn-danger"> <a href="/products/delete?id=${product.id}"><i class="fa-solid fa-trash-can"></i></a></button>
                             </td>`
-                    html += `<td>
+                            html += `<td>
                                 <button type="button" value="${product.id}" class="btn btn-warning"><a href="/products/update?id=${product.id}"><i class="fa-solid fa-wrench"></i></a></button>
                             </td>`
 
-                    html += '</tr>'
+                            html += '</tr>'
+                        })
+                        data = data.replace('{list-products}', html)
+                        res.writeHead(200, {"Content-Type": "text/html"})
+                        res.write(data)
+                        res.end();
+                    })})
+                .catch(error => {
+                    throw error
                 })
-                data = data.replace('{list-products}', html)
-                res.writeHead(200, {"Content-Type": "text/html"})
-                res.write(data)
-                res.end();
-            })
+        }
+        if(!cookieClient.cookie_user){
+               res.writeHead(301,{location: '/login'})
+               res.end();
+        }
+        if(req.method ==="POST"){
+            if(!cookieClient.cookie_user){
 
-        }).catch(error => {
-            throw error
-        })
+            }
+        }
     }
 
     static showUserPage(req, res) {
@@ -342,12 +364,47 @@ module.exports = class productController {
         let parseUrl = url.parse(req.url, true)
         let index=(qs.parse(parseUrl.query)).id;
         if(req.method === 'GET'){
-            productController.showFormUpdate('./views/products/update.html',req,res,index)
+            // phân tích url
+            const urlPath = url.parse(req.url, true);
+            let queryString = urlPath.query;
+            let idUpdate=queryString.id;
 
-            //lay du lieu tu bang
-            // productModel.findProductByID(index)
-            //     .then(result => {
-            //         console.log(result)})
+            console.log(idUpdate)
+
+            productModel.findProductUpdateByID(idUpdate)
+                .then(result=>{
+                    fs.readFile('./views/products/update.html',"utf-8",(err, data)=>{
+                        if (err){
+                            throw err
+                        }
+
+                        data=data.replace('value="Name"',
+                            `value="${result[0].name}"`
+                        )
+                        data=data.replace('value="Price"',
+                            `value="${result[0].price}"`
+                        )
+
+                        if(result[0].type ==='Quay'){
+                            data=data.replace('<input type="checkbox" name="typeProduct" value="Quay">',
+                                `<input type="checkbox" name="typeProduct" value="Quay" checked>`)
+                        }
+
+                        if(result[0].type ==='Nuong'){
+                             data=data.replace('<input type="checkbox" name="typeProduct" value="Nuong">',
+                            `<input type="checkbox" name="typeProduct" value="Quay" checked>`)
+                        }
+
+
+                        res.writeHead(200,{"Content-Type":"text/html"})
+                        res.write(data);
+                        res.end()
+                    })
+
+
+
+                })
+                .catch(err=>{throw err;})
 
 
 

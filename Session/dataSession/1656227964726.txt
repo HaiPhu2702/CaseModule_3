@@ -1,0 +1,1 @@
+{"IDSession":"tydtpwc0khfz7","DataSession":{"name":"user","pass":"1","expires":1656228569526}}

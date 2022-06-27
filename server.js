@@ -6,6 +6,7 @@ const port = 8080
 const router = require('./routes/Routes');
 const fs = require("fs");
 
+
 let mimeTypes = {
     "html": "text/html",
     "js": "text/javascript",
@@ -14,6 +15,7 @@ let mimeTypes = {
     "jpg" : "image/jpg",
     "png" : "image/png"
 };
+
 const httpServer=createServer((req, res) => {
 
 
@@ -28,13 +30,16 @@ const httpServer=createServer((req, res) => {
         const trimPath = pathName.replace(/^\/+|\/+$/g, '');
         const chooseHandler = ((typeof router[trimPath]) !== "undefined") ? router[trimPath]:router[404];
         chooseHandler(req, res);
-    }}).listen(port, () => {
+    }
+
+}).listen(port, () => {
     console.log("server listening http://localhost:" + port)
 })
 
 const io=new Server(httpServer);
 
-io.on('connection',socket => {
+io.of('/admin').
+on('connection',socket => {
     socket.on('chat',messageChat => {
         console.log(messageChat)
         socket.broadcast.emit('userChat',messageChat)
@@ -44,12 +49,6 @@ io.on('connection',socket => {
         console.log(adminAnswer)
         socket.broadcast.emit('adminAnswer1',adminAnswer)
     })
-
-    //  socket.on('adminAnswer',adminAnswer=>{
-    //
-    //     socket.broadcast.emit('adminAnswer',adminAnswer)
-    // })
-
 
 })
 

@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04857770-453e-4f93-8070-4fb842ad797f" name="Changes" comment="" />
+    <list default="true" id="04857770-453e-4f93-8070-4fb842ad797f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Session/dataSession/1656152070305.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Session/dataSession/1656156173112.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Session/dataSession/1656166165283.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/productControler.js" beforeDir="false" afterPath="$PROJECT_DIR$/controller/productControler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/ProductModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/ProductModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/products/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/products/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/user.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2AyMEczaK1blNEDFXN0NBSwhrAU" />
   <component name="ProjectViewState">
@@ -17,6 +35,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -30,6 +49,10 @@
       <updated>1655977262069</updated>
       <workItem from="1655977263947" duration="312000" />
       <workItem from="1655977580543" duration="4000" />
+      <workItem from="1656318074522" duration="625000" />
+      <workItem from="1656319655355" duration="789000" />
+      <workItem from="1656320710387" duration="31000" />
+      <workItem from="1656320751376" duration="1760000" />
     </task>
     <servers />
   </component>

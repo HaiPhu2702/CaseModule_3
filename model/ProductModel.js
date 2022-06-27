@@ -65,6 +65,26 @@ module.exports = class productModel {
         })
     }
 
+     static findProductUpdateByID(idUpdate) {
+        return new Promise((resolve, reject) => {
+            let sql = `select p.name,p.price,t.type 
+                        from products p 
+                        join typeProduct t on p.idtypeProduct = t.idtypeProduct
+                        where p.id='${idUpdate}'`
+            connectionMysql.query(sql, (err, result) => {
+                if (err) {
+                    reject(err)
+                }
+
+                    resolve(result)
+            })
+        })
+    }
+
+
+
+
+
    static joinProductWithTypeWithOrder(idOder) {
         return new Promise((resolve, reject) => {
             let sql = `select p.id,p.name,p.price,t.type 
